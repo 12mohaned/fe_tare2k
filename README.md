@@ -8,4 +8,4 @@ Fe_Tare2k is a car pooling application that connect you with other drivers.
 
 
 ### Application usecases errors
-![Image of application usecases errors](use-case errors.png)
+![Image of application usecases errors](use-case-errors.png)
