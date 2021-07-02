@@ -22,7 +22,7 @@ class _MyRidePageState extends State<MyRidePage> {
         child: Column(children:[RideForm(),
           SizedBox(
             width: 2,
-            height: 3,
+            height: 30,
           ),
           SizedBox(
           width: 100,
@@ -59,7 +59,7 @@ class RideFormState extends State<RideForm> {
       Row(children:<Widget>[
       Column(children:<Widget>[
       Padding(
-        padding: EdgeInsets.fromLTRB(6,100,10,10),
+        padding: EdgeInsets.fromLTRB(6,70,10,10),
         child: SizedBox(
       width: 160,
       height: 50,
@@ -94,7 +94,7 @@ class RideFormState extends State<RideForm> {
     ),
         Column(children:<Widget>[
           Padding(
-            padding: EdgeInsets.fromLTRB(12,100,10,10),
+            padding: EdgeInsets.fromLTRB(6,70,10,10),
             child: SizedBox(
               width: 160,
               height: 50,
