@@ -61,7 +61,7 @@ Widget _PastRides(){
   return
     Column( children:[
       IconButton(
-        icon: const Icon(Icons.access_time_outlined),
+        icon: const Icon(Icons.drive_eta_rounded),
         onPressed: () {
         },
       ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../MyRidePage.dart';
-import '../Profile.dart';
-import '../find-ride.dart';
+import 'MyRidePage.dart';
+import 'Profile.dart';
+import 'find-ride.dart';
+import 'AddRide.dart';
 
 class HomeApp extends StatelessWidget {
   const HomeApp({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _MyHomeWidgettState extends State<HomeWidget> {
     MyRidePage(title : "Home"),
     ProfilePage(title: "Profile"),
     FindRide(title: "find a ride"),
-    FindRide(title: "Publish a ride")
+    AddRide(title: "Publish a ride")
   ];
 
   void _onItemTapped(int index) {

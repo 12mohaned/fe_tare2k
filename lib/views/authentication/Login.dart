@@ -1,4 +1,4 @@
-import 'package:fe_tare2k/views/shared/Home.dart';
+import 'package:fe_tare2k/views/core_views/Home.dart';
 import 'package:flutter/material.dart';
 
 

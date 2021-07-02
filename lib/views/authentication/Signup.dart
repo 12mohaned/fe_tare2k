@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fe_tare2k/views/shared/Home.dart';
+import 'package:fe_tare2k/views/core_views/Home.dart';
 
 final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
