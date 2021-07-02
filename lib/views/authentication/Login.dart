@@ -1,8 +1,6 @@
 import 'package:fe_tare2k/views/core_views/Home.dart';
 import 'package:flutter/material.dart';
 
-
-
 class MyLoginForm extends StatefulWidget {
   @override
   LoginForm createState() {
@@ -13,11 +11,11 @@ class MyLoginForm extends StatefulWidget {
 final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 Widget _buildEmail() {
   return TextFormField(
-      decoration: new InputDecoration(
-        hintText: 'Email',
-        icon: Icon(Icons.mail),
-        labelText: 'Email',
-      ),
+    decoration: new InputDecoration(
+      hintText: 'Email',
+      icon: Icon(Icons.mail),
+      labelText: 'Email',
+    ),
   );
 }
 
@@ -28,8 +26,7 @@ Widget _buildPassword() {
         hintText: 'Password',
         icon: Icon(Icons.vpn_key),
         labelText: 'Password',
-      )
-  );
+      ));
 }
 
 class LoginForm extends State<MyLoginForm> {
@@ -56,18 +53,18 @@ class LoginForm extends State<MyLoginForm> {
               SizedBox(height: 10.0, width: 12.0),
               new Container(
                   child: new ElevatedButton(
-                    child: const Text('Submit'),
-                    onPressed: () async {
-                      if (_formkey.currentState!.validate()) {
-                        _formkey.currentState!.save();
+                child: const Text('Submit'),
+                onPressed: () async {
+                  if (_formkey.currentState!.validate()) {
+                    _formkey.currentState!.save();
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomeApp()),
-                          );
-                      }
-                    },
-                  )),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeApp()),
+                    );
+                  }
+                },
+              )),
             ],
           ),
         )));

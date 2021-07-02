@@ -31,9 +31,9 @@ class HomeWidget extends StatefulWidget {
 class _MyHomeWidgettState extends State<HomeWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    MyRidePage(title : "Home"),
+    MyRidePage(title: "Home"),
     ProfilePage(title: "Profile"),
     FindRide(title: "find a ride"),
     AddRide(title: "Publish a ride")
@@ -56,22 +56,22 @@ class _MyHomeWidgettState extends State<HomeWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor : Color.fromRGBO(33, 114, 243, 1),
+            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
-            backgroundColor : Color.fromRGBO(33, 114, 243, 1),
+            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.departure_board),
             label: 'Ride',
-            backgroundColor : Color.fromRGBO(33, 114, 243, 1),
+            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.drive_eta),
             label: 'Publish a ride',
-            backgroundColor : Color.fromRGBO(33, 114, 243, 1),
+            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
           )
         ],
         currentIndex: _selectedIndex,
@@ -81,4 +81,3 @@ class _MyHomeWidgettState extends State<HomeWidget> {
     );
   }
 }
-

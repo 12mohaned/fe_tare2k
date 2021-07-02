@@ -12,33 +12,33 @@ class MySignupForm extends StatefulWidget {
 
 Widget _buildName() {
   return TextFormField(
-      decoration: new InputDecoration(
-        hintText: 'Name',
-        icon: Icon(Icons.person),
-        labelText: 'Name',
-      ),
+    decoration: new InputDecoration(
+      hintText: 'Name',
+      icon: Icon(Icons.person),
+      labelText: 'Name',
+    ),
   );
 }
 
 Widget _buildEmail() {
   return TextFormField(
-      decoration: new InputDecoration(
-        hintText: 'Email',
-        icon: Icon(Icons.mail),
-        labelText: 'Email',
-      ),
-    );
+    decoration: new InputDecoration(
+      hintText: 'Email',
+      icon: Icon(Icons.mail),
+      labelText: 'Email',
+    ),
+  );
 }
 
 Widget _buildPassword() {
   return TextFormField(
-      obscureText: true,
-      decoration: new InputDecoration(
-        hintText: 'Password',
-        icon: Icon(Icons.vpn_key),
-        labelText: 'Password',
-      ),
-   );
+    obscureText: true,
+    decoration: new InputDecoration(
+      hintText: 'Password',
+      icon: Icon(Icons.vpn_key),
+      labelText: 'Password',
+    ),
+  );
 }
 
 class SignupForm extends State<MySignupForm> {
@@ -53,7 +53,6 @@ class SignupForm extends State<MySignupForm> {
           centerTitle: true,
           title: Text("Signup"),
           backgroundColor: Color.fromRGBO(33, 114, 243, 1),
-
         ),
         body: (Form(
           key: _formkey,
@@ -67,18 +66,17 @@ class SignupForm extends State<MySignupForm> {
               SizedBox(height: 10.0, width: 12.0),
               new Container(
                   child: new ElevatedButton(
-                    child: const Text('Submit'),
-                    onPressed: () async {
-                      if (_formkey.currentState!.validate()) {
-                        _formkey.currentState!.save();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomeApp()),
-                          );
-
-                      } else {}
-                    },
-                  )),
+                child: const Text('Submit'),
+                onPressed: () async {
+                  if (_formkey.currentState!.validate()) {
+                    _formkey.currentState!.save();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeApp()),
+                    );
+                  } else {}
+                },
+              )),
             ],
           ),
         )));

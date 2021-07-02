@@ -15,26 +15,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:
-      Scaffold(
+      home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: Text("Ride Hail"),
           backgroundColor: Color.fromRGBO(33, 114, 243, 1),
-
         ),
         body: Container(
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-            ),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center,
+            decoration: BoxDecoration(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Register('Register'),
                 SizedBox(height: 28.0, width: 15.0),
                 Login('Login'),
               ],
-            )
-        ),
+            )),
       ),
     );
   }
@@ -47,19 +44,17 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Padding(
-          padding: const EdgeInsets.all(0.7),
-          child: ElevatedButton(
-            child: Text(persona,
-                style: TextStyle(
-                )),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MySignupForm()),
-              );
-            },
-          ),
-        ));
+      padding: const EdgeInsets.all(0.7),
+      child: ElevatedButton(
+        child: Text(persona, style: TextStyle()),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MySignupForm()),
+          );
+        },
+      ),
+    ));
   }
 }
 
@@ -70,18 +65,16 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: Padding(
-          padding: const EdgeInsets.all(0.7),
-          child: ElevatedButton(
-            child: Text(persona,
-                style: TextStyle(
-                )),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MyLoginForm()),
-              );
-            },
-          ),
-        ));
+      padding: const EdgeInsets.all(0.7),
+      child: ElevatedButton(
+        child: Text(persona, style: TextStyle()),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MyLoginForm()),
+          );
+        },
+      ),
+    ));
   }
 }

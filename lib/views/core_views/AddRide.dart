@@ -13,14 +13,15 @@ class _AddRideState extends State<AddRide> {
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =
-    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 13));
+        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 13));
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: Color.fromRGBO(33, 114, 243, 1),
       ),
       body: Center(
-        child: Column(children:[AddRideForm(),
+        child: Column(children: [
+          AddRideForm(),
           SizedBox(
             width: 1,
             height: 18,
@@ -28,22 +29,38 @@ class _AddRideState extends State<AddRide> {
           SizedBox(
             width: 100,
             height: 30,
-            child:
-            ElevatedButton(
+            child: ElevatedButton(
               style: style,
               onPressed: () {},
               child: const Text('Publish'),
             ),
-          ),]),
+          ),
+        ]),
       ),
     );
   }
 }
+
 // The form responsible for reserving a ride
-class AddRideForm extends StatefulWidget{
+class AddRideForm extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return AddRideFormState();
+  }
+}
+
+class AddRideWidget extends StatelessWidget {
+  final String hintText;
+  const AddRideWidget({Key? key, required this.hintText}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+          hintText: this.hintText,
+          contentPadding:
+              new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
+    );
   }
 }
 
@@ -53,100 +70,57 @@ class AddRideFormState extends State<AddRideForm> {
   //
   // Note: This is a `GlobalKey<FormState>`,
   final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
-    return
-      Row(children:<Widget>[
-        Column(children:<Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(5,1,1,20),
-            child: SizedBox(
+    return Row(
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(5, 1, 1, 20),
+              child: SizedBox(
+                  width: 160,
+                  height: 50,
+                  child: AddRideWidget(hintText: ' Pick-up')),
+            ),
+            SizedBox(
+              width: 10,
+              height: 2,
+            ),
+            SizedBox(
+                width: 160, height: 50, child: AddRideWidget(hintText: 'Date')),
+          ],
+        ),
+        Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(6, 40, 10, 10),
+              child: SizedBox(
+                  width: 160,
+                  height: 50,
+                  child: AddRideWidget(hintText: 'Drop-off')),
+            ),
+            SizedBox(
+              width: 10,
+              height: 10,
+            ),
+            SizedBox(
               width: 160,
               height: 50,
-              child:
-              TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-                    hintText: 'Pick-up',
-                    contentPadding: new EdgeInsets.symmetric(horizontal : 30,vertical: 5)
-                ),
-              ),
+              child: AddRideWidget(hintText: 'Passengers'),
             ),
-          ),
-          SizedBox(
-            width: 10,
-            height: 2,
-          ),
-          SizedBox(
-            width: 160,
-            height: 50,
-            child:
-            TextFormField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-                  hintText: 'Date',
-                  contentPadding: new EdgeInsets.symmetric(horizontal : 30,vertical: 5)
-              ),
+            SizedBox(
+              width: 10,
+              height: 10,
             ),
-          ),
-
-        ],
-        ),
-        Column(children:<Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(6,40,10,10),
-            child: SizedBox(
+            SizedBox(
               width: 160,
-              height: 50,
-              child:
-              TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-                    hintText: 'Drop-off',
-                    contentPadding: new EdgeInsets.symmetric(horizontal : 30,vertical: 5)
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 10,
-            height: 10,
-          ),
-          SizedBox(
-            width: 160,
-            height: 50,
-            child:
-            TextFormField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-                  hintText: 'Passengers',
-                  contentPadding: new EdgeInsets.symmetric(horizontal : 30,vertical: 5)
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 10,
-            height: 10,
-          ),
-          SizedBox(
-            width: 160,
-            height: 45,
-            child:
-            TextFormField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-                  hintText: 'Luggage',
-                  contentPadding: new EdgeInsets.symmetric(horizontal : 30,vertical: 5)
-              ),
-            ),
-          )
-
-        ],
+              height: 45,
+              child: AddRideWidget(hintText: 'Luggage'),
+            )
+          ],
         ),
-
       ],
-
-      );
+    );
   }
 }
