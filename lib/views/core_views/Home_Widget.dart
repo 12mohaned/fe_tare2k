@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'MyRidePage.dart';
-import 'Profile.dart';
-import 'find-ride.dart';
-import 'AddRide.dart';
+import 'MyRidePage_Widget.dart';
+import 'Profile_Widget.dart';
+import 'find-ride_Widget.dart';
+import 'AddRide_Widget.dart';
+import 'RequestRide_Widget.dart';
 
 class HomeApp extends StatelessWidget {
   const HomeApp({Key? key}) : super(key: key);
@@ -36,7 +37,8 @@ class _MyHomeWidgettState extends State<HomeWidget> {
     MyRidePage(title: "Home"),
     ProfilePage(title: "Profile"),
     FindRide(title: "find a ride"),
-    AddRide(title: "Publish a ride")
+    AddRide(title: "Publish a ride"),
+    RequestRidePage(title: "Request a ride")
   ];
 
   void _onItemTapped(int index) {
@@ -71,6 +73,11 @@ class _MyHomeWidgettState extends State<HomeWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.drive_eta),
             label: 'Publish a ride',
+            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.drive_eta),
+            label: 'Request Ride',
             backgroundColor: Color.fromRGBO(33, 114, 243, 1),
           )
         ],

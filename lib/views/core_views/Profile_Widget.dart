@@ -12,8 +12,6 @@ class ProfilePage extends StatefulWidget {
 class _MyProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style =
-        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 13));
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -26,27 +24,27 @@ class _MyProfilePageState extends State<ProfilePage> {
   }
 }
 
-Widget _FirstName() {
+Widget _firstName() {
   return Text("Mohaned",
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
-Widget _LastName() {
+Widget _lastName() {
   return Text("Mashaly",
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
-Widget _Email() {
+Widget _email() {
   return Text("Mohaned.mashaly12@gmail.com",
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
-Widget _Phone() {
+Widget _phone() {
   return Text("01064042430",
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
-Widget _EditProfile() {
+Widget _editProfile() {
   return Column(
     children: [
       IconButton(
@@ -58,7 +56,7 @@ Widget _EditProfile() {
   );
 }
 
-Widget _PastRides() {
+Widget _pastRides() {
   return Column(
     children: [
       IconButton(
@@ -70,7 +68,7 @@ Widget _PastRides() {
   );
 }
 
-Widget _Dashboard() {
+Widget _dashBoard() {
   return Column(
     children: [
       IconButton(
@@ -88,13 +86,13 @@ class UserinformationWidget extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned(top: 140, left: 140, child: _FirstName()),
-          Positioned(top: 180, left: 140, child: _LastName()),
-          Positioned(top: 220, right: 50, child: _Email()),
-          Positioned(top: 260, left: 120, child: _Phone()),
-          Positioned(top: 380, left: 40, child: _EditProfile()),
-          Positioned(top: 380, left: 140, child: _PastRides()),
-          Positioned(top: 380, left: 250, child: _Dashboard()),
+          Positioned(top: 140, left: 140, child: _firstName()),
+          Positioned(top: 180, left: 140, child: _lastName()),
+          Positioned(top: 220, right: 50, child: _email()),
+          Positioned(top: 260, left: 120, child: _phone()),
+          Positioned(top: 380, left: 40, child: _editProfile()),
+          Positioned(top: 380, left: 140, child: _pastRides()),
+          Positioned(top: 380, left: 250, child: _dashBoard()),
         ],
       ),
     );

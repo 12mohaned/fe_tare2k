@@ -1,5 +1,5 @@
-import 'package:fe_tare2k/views/authentication/Login.dart';
-import 'package:fe_tare2k/views/authentication/Signup.dart';
+import 'package:fe_tare2k/views/authentication/Login_Widget.dart';
+import 'package:fe_tare2k/views/authentication/Signup_Widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
