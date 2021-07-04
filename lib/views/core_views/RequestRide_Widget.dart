@@ -50,6 +50,8 @@ class DriverInformation extends StatelessWidget {
                   Icon(Icons.arrow_right_alt_sharp),
                   SizedBox(width: 10),
                   Text('Destination'),
+                  SizedBox(width: 10),
+                  Text('2:30'),
                   TextButton(
                     child: Text('Select'),
                     onPressed: () {},

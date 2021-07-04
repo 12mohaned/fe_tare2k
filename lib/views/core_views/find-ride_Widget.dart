@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'RequestRide_Widget.dart';
 
 class FindRide extends StatefulWidget {
   FindRide({Key? key, required this.title}) : super(key: key);
@@ -31,7 +32,14 @@ class _FindRideState extends State<FindRide> {
             height: 30,
             child: ElevatedButton(
               style: style,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          RequestRidePage(title: "Available Rides")),
+                );
+              },
               child: const Text('Search'),
             ),
           ),

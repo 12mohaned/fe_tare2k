@@ -37,8 +37,7 @@ class _MyHomeWidgettState extends State<HomeWidget> {
     MyRidePage(title: "Home"),
     ProfilePage(title: "Profile"),
     FindRide(title: "find a ride"),
-    AddRide(title: "Publish a ride"),
-    RequestRidePage(title: "Request a ride")
+    AddRide(title: "Publish a ride")
   ];
 
   void _onItemTapped(int index) {
@@ -75,11 +74,6 @@ class _MyHomeWidgettState extends State<HomeWidget> {
             label: 'Publish a ride',
             backgroundColor: Color.fromRGBO(33, 114, 243, 1),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.drive_eta),
-            label: 'Request Ride',
-            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
-          )
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.black,
