@@ -58,10 +58,6 @@ class RideForm extends StatefulWidget {
 }
 
 class RideFormState extends State<RideForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a `GlobalKey<FormState>`,
   final _formKey = GlobalKey<FormState>();
 
   @override

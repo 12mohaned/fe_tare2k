@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "318215061184",
+    "project_id": "fetare2k-9a924",
+    "storage_bucket": "fetare2k-9a924.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318215061184:android:260fe3a9724c0073e7f725",
+        "android_client_info": {
+          "package_name": "com.example.fe_tare2k"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318215061184-553v8ovn1bke7kflnsdcg6q5r4q598s0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhx6feBReWNw2zvDMBz6Vr0FEUVozsAOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318215061184-553v8ovn1bke7kflnsdcg6q5r4q598s0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

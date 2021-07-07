@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'MyRidePage_Widget.dart';
 import 'Profile_Widget.dart';
 import 'find-ride_Widget.dart';
@@ -25,14 +24,12 @@ class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
 
   @override
-  State<HomeWidget> createState() => _MyHomeWidgettState();
+  State<HomeWidget> createState() => _MyHomeWidgetState();
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
-class _MyHomeWidgettState extends State<HomeWidget> {
+class _MyHomeWidgetState extends State<HomeWidget> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     MyRidePage(title: "Home"),
     ProfilePage(title: "Profile"),
