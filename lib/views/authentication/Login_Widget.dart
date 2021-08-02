@@ -94,13 +94,15 @@ class LoginForm extends State<MyLoginForm> {
                           _formkey.currentState!.save();
                           dynamic result =
                               await _auth.loginIn(_email, _password);
-                          if (result != null) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeApp()),
-                            );
-                          } else {}
+                          print(result);
+                            if (result == authenticationStatus.completed) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeApp()),
+                              );
+                            }
+                          else {}
                         }
                       },
                     )),

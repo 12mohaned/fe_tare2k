@@ -24,10 +24,19 @@ class AuthService {
         return passwordStatus.weak;
       } else if (e.code == 'email-already-in-use') {
         return emailStatus.Exists;
+      }else{
+        if(e.code == 'invalid-email'){
+          return emailStatus.invalid;
+        }else{
+          if(e.code == 'operation-not-allowed'){
+            return emailStatus.disabled;
+          }
+        }
       }
     } catch (e) {
       return e;
     }
+    return authenticationStatus.completed;
   }
 
   Future loginIn(String email, String password) async {
@@ -39,11 +48,23 @@ class AuthService {
         return emailStatus.DoNotExists;
       } else if (e.code == 'wrong-password') {
         return passwordStatus.wrong;
+      }else{
+        if(e.code == 'user-disabled'){
+          return emailStatus.disabled;
+        }else{
+          if(e.code == 'invalid-email'){
+            return emailStatus.invalid;
+          }
+        }
       }
     }
+    return authenticationStatus.completed;
+
   }
 }
 
-enum emailStatus { Verified, Exists, DoNotExists }
+enum emailStatus { Verified, Exists, DoNotExists, disabled, invalid }
 
-enum passwordStatus { wrong, weak }
+enum passwordStatus { wrong, weak}
+
+enum authenticationStatus{completed}
