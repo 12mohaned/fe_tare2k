@@ -1,15 +1,29 @@
+import 'package:fe_tare2k/Model/User.dart';
+import 'package:fe_tare2k/net/API_callers/user_API_caller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+
+late Future<user> profileInformation;
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
-
   @override
   _MyProfilePageState createState() => _MyProfilePageState();
 }
 
 class _MyProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<user> _getUserInfo() async {
+    var _userData = await UserCaller.getProfile();
+    return _userData;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,28 +33,62 @@ class _MyProfilePageState extends State<ProfilePage> {
           backgroundColor: Color.fromRGBO(33, 114, 243, 1),
         ),
         body: Center(
-          child: UserinformationWidget(),
+          child: FutureBuilder<user>(
+            builder: (BuildContext context, AsyncSnapshot<user> snapshot) {
+              if (snapshot.hasData) {
+                return Stack(
+                  children: [
+                    Positioned(
+                        top: 140,
+                        left: 140,
+                        child: _firstName(snapshot.data!.firstName)),
+                    Positioned(
+                        top: 180,
+                        left: 140,
+                        child: _lastName(snapshot.data!.lastName)),
+                    Positioned(
+                        top: 220,
+                        right: 50,
+                        child: _email(snapshot.data!.email)),
+                    Positioned(
+                        top: 260,
+                        left: 120,
+                        child: _phone(snapshot.data!.phoneNumber.toString())),
+                    Positioned(top: 380, left: 40, child: _editProfile()),
+                    Positioned(top: 380, left: 140, child: _pastRides()),
+                    Positioned(top: 380, left: 250, child: _dashBoard()),
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+
+              // By default, show a loading spinner.
+              return const CircularProgressIndicator();
+            },
+            future: _getUserInfo(),
+          ),
         ));
   }
 }
 
-Widget _firstName() {
-  return Text("Mohaned",
+Widget _firstName(firstName) {
+  return Text(firstName,
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
-Widget _lastName() {
-  return Text("Mashaly",
+Widget _lastName(lastName) {
+  return Text(lastName,
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
-Widget _email() {
-  return Text("Mohaned.mashaly12@gmail.com",
+Widget _email(email) {
+  return Text(email,
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
-Widget _phone() {
-  return Text("01064042430",
+Widget _phone(phone) {
+  return Text(phone,
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
@@ -80,21 +128,37 @@ Widget _dashBoard() {
   );
 }
 
-class UserinformationWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(top: 140, left: 140, child: _firstName()),
-          Positioned(top: 180, left: 140, child: _lastName()),
-          Positioned(top: 220, right: 50, child: _email()),
-          Positioned(top: 260, left: 120, child: _phone()),
-          Positioned(top: 380, left: 40, child: _editProfile()),
-          Positioned(top: 380, left: 140, child: _pastRides()),
-          Positioned(top: 380, left: 250, child: _dashBoard()),
-        ],
-      ),
-    );
-  }
-}
+// class UserInformationWidget extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context){
+//     return FutureBuilder(
+//       future : getProfileInfo(),
+//         builder: (BuildContext context, AsyncSnapshot snapshot) {
+//           if (snapshot.hasData) {
+//             return  Stack(
+//               children: [
+//                 Positioned(top: 140, left: 140, child: _firstName(snapshot.data!.firstName)),
+//                 Positioned(top: 180, left: 140, child: _lastName(snapshot.data!.lastName)),
+//                 Positioned(top: 220, right: 50, child: _email(snapshot.data!.email)),
+//                 Positioned(top: 260, left: 120, child: _phone(snapshot.data!.phoneNumber)),
+//                 Positioned(top: 380, left: 40, child: _editProfile()),
+//                 Positioned(top: 380, left: 140, child: _pastRides()),
+//                 Positioned(top: 380, left: 250, child: _dashBoard()),
+//               ],
+//             );
+//           } else if (snapshot.hasError) {
+//             return Text('${snapshot.error}');
+//           }
+//
+//           // By default, show a loading spinner.
+//           return const CircularProgressIndicator();
+//         },
+//     );
+//   }
+// }
+//
+// Future<user> getProfileInfo() async{
+//   profileInformation = (await userCaller.getProfile()) as Future<user>;
+//   return profileInformation;
+// }

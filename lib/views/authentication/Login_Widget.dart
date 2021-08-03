@@ -69,12 +69,9 @@ class LoginForm extends State<MyLoginForm> {
       body: FutureBuilder(
         future: Firebase.initializeApp(),
         builder: (context, snapshot) {
-          // Check for errors
           if (snapshot.hasError) {
             return Text("Error");
           }
-
-          // Once complete, show your application
           if (snapshot.connectionState == ConnectionState.done) {
             return Container(
               child: (Form(
@@ -94,15 +91,13 @@ class LoginForm extends State<MyLoginForm> {
                           _formkey.currentState!.save();
                           dynamic result =
                               await _auth.loginIn(_email, _password);
-                          print(result);
-                            if (result == authenticationStatus.completed) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomeApp()),
-                              );
-                            }
-                          else {}
+                          if (result == authenticationStatus.completed) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeApp()),
+                            );
+                          } else {}
                         }
                       },
                     )),

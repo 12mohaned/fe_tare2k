@@ -242,7 +242,7 @@ class SignupWithEmail extends StatelessWidget {
                   _formkey.currentState!.save();
                   dynamic result = await _auth.signup(
                       _firstName, _lastName, _email, _phoneNumber, _password);
-                  if (result != null) {
+                  if (result == authenticationStatus.completed) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => HomeApp()),

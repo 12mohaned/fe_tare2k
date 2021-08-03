@@ -21,6 +21,19 @@ class Ride {
       required this.time,
       required this.User,
       required this.tripStatus});
+
+  factory Ride.fromJson(Map<String, dynamic> json) {
+    return Ride(
+        pickup: json['Pickup'],
+        destination: json['Destination'],
+        date: json['Date'],
+        passengers: json['Passengers'],
+        luggage: json['Luggage'],
+        price: json['Price'],
+        time: json['Time'],
+        User: json['User'],
+        tripStatus: json['TripStatus']);
+  }
 }
 
 enum Status {

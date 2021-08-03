@@ -12,23 +12,21 @@ class AuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
       var hashedPassword = Crypt.sha256(password);
       user(
-          uid: userCredential.user!.uid,
           firstName: firstName,
           lastName: lastName,
           email: email,
-          phoneNumber: phoneNumber,
-          password: hashedPassword.toString());
+          phoneNumber: phoneNumber);
       print(userCredential);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return passwordStatus.weak;
       } else if (e.code == 'email-already-in-use') {
         return emailStatus.Exists;
-      }else{
-        if(e.code == 'invalid-email'){
+      } else {
+        if (e.code == 'invalid-email') {
           return emailStatus.invalid;
-        }else{
-          if(e.code == 'operation-not-allowed'){
+        } else {
+          if (e.code == 'operation-not-allowed') {
             return emailStatus.disabled;
           }
         }
@@ -48,23 +46,22 @@ class AuthService {
         return emailStatus.DoNotExists;
       } else if (e.code == 'wrong-password') {
         return passwordStatus.wrong;
-      }else{
-        if(e.code == 'user-disabled'){
+      } else {
+        if (e.code == 'user-disabled') {
           return emailStatus.disabled;
-        }else{
-          if(e.code == 'invalid-email'){
+        } else {
+          if (e.code == 'invalid-email') {
             return emailStatus.invalid;
           }
         }
       }
     }
     return authenticationStatus.completed;
-
   }
 }
 
 enum emailStatus { Verified, Exists, DoNotExists, disabled, invalid }
 
-enum passwordStatus { wrong, weak}
+enum passwordStatus { wrong, weak }
 
-enum authenticationStatus{completed}
+enum authenticationStatus { completed }
