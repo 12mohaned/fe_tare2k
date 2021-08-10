@@ -8,8 +8,6 @@ class Ride {
   int luggage;
   double price;
   String time;
-  user User;
-  Status tripStatus;
 
   Ride(
       {required this.pickup,
@@ -19,20 +17,17 @@ class Ride {
       required this.luggage,
       required this.price,
       required this.time,
-      required this.User,
-      required this.tripStatus});
+      });
 
   factory Ride.fromJson(Map<String, dynamic> json) {
     return Ride(
-        pickup: json['Pickup'],
-        destination: json['Destination'],
-        date: json['Date'],
-        passengers: json['Passengers'],
-        luggage: json['Luggage'],
-        price: json['Price'],
-        time: json['Time'],
-        User: json['User'],
-        tripStatus: json['TripStatus']);
+        pickup: json['pickup'],
+        destination: json['destination'],
+        date: json['date'],
+        passengers: json['passengers'],
+        luggage: json['luggage'],
+        price: json['price'],
+        time: json['time']);
   }
 }
 

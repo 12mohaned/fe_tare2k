@@ -35,6 +35,7 @@ class _MyProfilePageState extends State<ProfilePage> {
         body: Center(
           child: FutureBuilder<user>(
             builder: (BuildContext context, AsyncSnapshot<user> snapshot) {
+              print(snapshot.toString().length);
               if (snapshot.hasData) {
                 return Stack(
                   children: [
@@ -127,38 +128,3 @@ Widget _dashBoard() {
     ],
   );
 }
-
-// class UserInformationWidget extends StatelessWidget {
-//
-//   @override
-//   Widget build(BuildContext context){
-//     return FutureBuilder(
-//       future : getProfileInfo(),
-//         builder: (BuildContext context, AsyncSnapshot snapshot) {
-//           if (snapshot.hasData) {
-//             return  Stack(
-//               children: [
-//                 Positioned(top: 140, left: 140, child: _firstName(snapshot.data!.firstName)),
-//                 Positioned(top: 180, left: 140, child: _lastName(snapshot.data!.lastName)),
-//                 Positioned(top: 220, right: 50, child: _email(snapshot.data!.email)),
-//                 Positioned(top: 260, left: 120, child: _phone(snapshot.data!.phoneNumber)),
-//                 Positioned(top: 380, left: 40, child: _editProfile()),
-//                 Positioned(top: 380, left: 140, child: _pastRides()),
-//                 Positioned(top: 380, left: 250, child: _dashBoard()),
-//               ],
-//             );
-//           } else if (snapshot.hasError) {
-//             return Text('${snapshot.error}');
-//           }
-//
-//           // By default, show a loading spinner.
-//           return const CircularProgressIndicator();
-//         },
-//     );
-//   }
-// }
-//
-// Future<user> getProfileInfo() async{
-//   profileInformation = (await userCaller.getProfile()) as Future<user>;
-//   return profileInformation;
-// }
