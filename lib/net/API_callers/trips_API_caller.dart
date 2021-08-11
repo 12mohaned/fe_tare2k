@@ -10,7 +10,7 @@ final FirebaseAuth auth = FirebaseAuth.instance;
 class TripCaller {
   static Future<List> getTripInfo() async {
     final response =
-    await http.get(Uri.parse('http://10.0.2.2:8080/ride/rides/'));
+        await http.get(Uri.parse('http://10.0.2.2:8080/ride/rides/'));
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
       return jsonResponse.toList();

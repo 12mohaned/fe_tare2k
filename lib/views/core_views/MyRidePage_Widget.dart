@@ -58,10 +58,7 @@ class RideFormState extends State<RideForm> {
 
   @override
   Widget build(BuildContext context) {
-
-
-    return
-      Row(
+    return Row(
       children: <Widget>[
         Column(
           children: <Widget>[

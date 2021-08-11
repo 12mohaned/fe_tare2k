@@ -9,15 +9,15 @@ class Ride {
   double price;
   String time;
 
-  Ride(
-      {required this.pickup,
-      required this.destination,
-      required this.date,
-      required this.passengers,
-      required this.luggage,
-      required this.price,
-      required this.time,
-      });
+  Ride({
+    required this.pickup,
+    required this.destination,
+    required this.date,
+    required this.passengers,
+    required this.luggage,
+    required this.price,
+    required this.time,
+  });
 
   factory Ride.fromJson(Map<String, dynamic> json) {
     return Ride(
