@@ -11,7 +11,6 @@ class UserCaller {
     String profile = auth.currentUser!.email.toString();
     final response =
         await http.get(Uri.parse('http://10.0.2.2:8080/user/' + profile));
-    print(user.fromJson(jsonDecode(response.body)));
     if (response.statusCode == 200) {
       return user.fromJson(jsonDecode(response.body));
     } else {

@@ -73,7 +73,8 @@ class _RequestRideState extends State<RequestRidePage> {
                             ),
                             ListTile(
                               leading: Icon(Icons.person),
-                              title: Text("Mohaned Mashaly"),
+                              title: Text(data[index]['driver']['firstname'] + " " +
+                                  data[index]['driver']['lastname']),
                               trailing: TextButton(
                                 child: Text('Select'),
                                 onPressed: () {},

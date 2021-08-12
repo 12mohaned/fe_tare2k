@@ -95,6 +95,7 @@ class RideFormState extends State<RideForm> {
                     hintText: 'Date',
                     contentPadding:
                         new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
+
               ),
             ),
           ],
