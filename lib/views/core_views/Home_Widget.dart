@@ -1,81 +1,85 @@
 import 'package:flutter/material.dart';
-import 'MyRidePage_Widget.dart';
-import 'Profile_Widget.dart';
-import 'find-ride_Widget.dart';
-import 'AddRide_Widget.dart';
-import 'RequestRide_Widget.dart';
 
-class HomeApp extends StatelessWidget {
-  const HomeApp({Key? key}) : super(key: key);
+class MyRidePage extends StatefulWidget {
+  MyRidePage({Key? key, required this.title}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
+  final String title;
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: HomeWidget(),
-    );
-  }
+  _MyRidePageState createState() => _MyRidePageState();
 }
 
-/// This is the stateful widget that the main application instantiates.
-class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key? key}) : super(key: key);
-
-  @override
-  State<HomeWidget> createState() => _MyHomeWidgetState();
-}
-
-/// This is the private State class that goes with MyStatefulWidget.
-class _MyHomeWidgetState extends State<HomeWidget> {
-  int _selectedIndex = 0;
-  static List<Widget> _widgetOptions = <Widget>[
-    MyRidePage(title: "Home"),
-    ProfilePage(title: "Profile"),
-    FindRide(title: "find a ride"),
-    AddRide(title: "Publish a ride")
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class _MyRidePageState extends State<MyRidePage> {
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle style =
+        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 13));
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: Color.fromRGBO(33, 114, 243, 1),
+      ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child:
+            Column(
+                children: <Widget>[
+                  SizedBox(height: 30,),
+                  Text("Fe Tare2k",
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 20,color: Colors.blueGrey),),
+        Container(
+          width: 250,
+        child:(
+            Image.asset("assets/carpool.png")
+        )
+        ),
+                  SizedBox(height: 20,),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                      _editProfile(),
+                        SizedBox(width: 20,),
+                       _pastRides(),
+                        SizedBox(width: 20,),
+                       _dashBoard(),
+                    ],
+                  ),
+        ]      )
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.departure_board),
-            label: 'Ride',
-            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.drive_eta),
-            label: 'Publish a ride',
-            backgroundColor: Color.fromRGBO(33, 114, 243, 1),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        onTap: _onItemTapped,
-      ),
-    );
+      );
   }
+}
+
+Widget _editProfile() {
+  return Column(
+    children: [
+      Icon(Icons.car_rental,
+            color: Color.fromRGBO(33, 114, 243, 1),
+        size: 60,),
+      Text("Ride"),
+    ],
+  );
+}
+
+Widget _pastRides() {
+  return Column(
+    children: [
+    Icon(Icons.drive_eta_rounded,
+          color: Color.fromRGBO(33, 114, 243, 1),
+        size: 60,),
+      Text("Drive")
+    ],
+  );
+}
+
+Widget _dashBoard() {
+  return Column(
+    children: [
+     Icon(Icons.attach_money,
+            color: Color.fromRGBO(33, 114, 243, 1),
+        size: 60,),
+      Text("Save")
+    ],
+  );
 }

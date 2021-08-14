@@ -1,5 +1,14 @@
+import 'package:date_field/date_field.dart';
+import 'package:fe_tare2k/Model/City.dart';
+import 'package:fe_tare2k/net/API_callers/city_API_caller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'RequestRide_Widget.dart';
+
+late String _pickup;
+late String _destination;
+late int _passengers;
+late DateTime _date;
 
 class FindRide extends StatefulWidget {
   FindRide({Key? key, required this.title}) : super(key: key);
@@ -8,6 +17,31 @@ class FindRide extends StatefulWidget {
 
   @override
   _FindRideState createState() => _FindRideState();
+}
+
+Widget _buildDate(){
+  final DateTime now = DateTime.now();
+
+  return Center(
+    child:(
+        DateTimeFormField(
+          decoration: const InputDecoration(
+            hintStyle: TextStyle(color: Colors.black45),
+            errorStyle: TextStyle(color: Colors.redAccent),
+            border: OutlineInputBorder(),
+            suffixIcon: Icon(Icons.event_note),
+            labelText: 'Date and time',
+          ),
+          mode: DateTimeFieldPickerMode.dateAndTime,
+          autovalidateMode: AutovalidateMode.always,
+          validator: (value){
+
+          } ,
+          onDateSelected: (DateTime value) {
+            _date = value;
+          },
+        )),
+  );
 }
 
 class _FindRideState extends State<FindRide> {
@@ -59,10 +93,16 @@ class RideForm extends StatefulWidget {
 
 class RideFormState extends State<RideForm> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _pickupController = TextEditingController();
+  final TextEditingController _destinationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return
+      Form(
+        key: _formKey,
+        child:(
+      Row(
       children: <Widget>[
         Column(
           children: <Widget>[
@@ -71,13 +111,35 @@ class RideFormState extends State<RideForm> {
               child: SizedBox(
                 width: 160,
                 height: 50,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
-                      hintText: 'Pick-up',
-                      contentPadding: new EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 5)),
+                child: TypeAheadFormField<City?>(
+                  textFieldConfiguration: TextFieldConfiguration(
+                      controller: this._pickupController,
+                      decoration: InputDecoration(
+                          labelText: 'Pickup'
+                      )
+                  ),
+                  suggestionsCallback: CityCaller.getCitiesInfo,
+                  itemBuilder: (context, City? suggestion){
+                    final city =suggestion;
+                    return ListTile(
+                      title: Text(city!.name),
+                    );
+                  },
+                  noItemsFoundBuilder: (context) =>
+                      Container(
+                          height: 20,
+                          child: Text(
+                              "No cities found"
+                          )),
+                  onSuggestionSelected: (suggestion) {
+                    this._pickupController.text = suggestion!.name;
+                  },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please select a pickup';
+                    }
+                  },
+                  onSaved: (value) => _pickup = value!,
                 ),
               ),
             ),
@@ -87,16 +149,8 @@ class RideFormState extends State<RideForm> {
             ),
             SizedBox(
               width: 160,
-              height: 50,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
-                    hintText: 'Date',
-                    contentPadding:
-                        new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
-
-              ),
+              height: 90,
+              child: _buildDate(),
             ),
           ],
         ),
@@ -107,13 +161,36 @@ class RideFormState extends State<RideForm> {
               child: SizedBox(
                 width: 160,
                 height: 50,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
-                      hintText: 'Drop-off',
-                      contentPadding: new EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 5)),
+                child: TypeAheadFormField<City?>(
+                  textFieldConfiguration: TextFieldConfiguration(
+                      controller: this._destinationController,
+                      decoration: InputDecoration(
+                          labelText: 'Destination'
+                      )
+                  ),
+                  suggestionsCallback: CityCaller.getCitiesInfo,
+                  itemBuilder: (context, City? suggestion){
+                    final city =suggestion;
+                    return ListTile(
+                      title: Text(city!.name),
+                    );
+                  },
+                  noItemsFoundBuilder: (context) =>
+                      Container(
+                          height: 20,
+                          child: Text(
+                              "No cities found"
+                          )),
+                  onSuggestionSelected: (suggestion) {
+                    this._destinationController.text = suggestion!.name;
+                  },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please select a destination';
+                    }
+                  },
+                  onSaved: (value) => _destination = value!,
+
                 ),
               ),
             ),
@@ -131,11 +208,13 @@ class RideFormState extends State<RideForm> {
                     hintText: 'Passengers',
                     contentPadding:
                         new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
+                keyboardType: TextInputType.number,
               ),
             ),
           ],
         ),
       ],
-    );
+    )
+      ));
   }
 }

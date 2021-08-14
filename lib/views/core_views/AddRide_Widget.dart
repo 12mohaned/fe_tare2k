@@ -75,8 +75,6 @@ Widget _buildPassenger() {
         if(value!.isEmpty){
           return "Fill Passengers";
         }
-
-
       },
       onSaved: (value){
         _passengers = value! as int;
@@ -90,27 +88,7 @@ Widget _buildPassenger() {
     )),
   );
 }
-Widget _buildLuggage() {
-  return Container(
-    width: 300,
-    child: (TextFormField(
-      validator: (value){
-        if(value!.isEmpty){
-          return "Fill Luggage";
-        }
-      },
-      onSaved: (value){
-        _luggage = value! as int;
-      },
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          hintText: "Luggage",
-          contentPadding:
-          new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
-      keyboardType: TextInputType.number,
-    )),
-  );
-}
+
 Widget _buildDate(){
   final DateTime now = DateTime.now();
 
@@ -128,7 +106,13 @@ Widget _buildDate(){
           mode: DateTimeFieldPickerMode.dateAndTime,
           autovalidateMode: AutovalidateMode.always,
           validator: (value){
-
+            var now = new DateTime.now();
+            if(value == null){
+             return "Fill date";
+            }
+            if(value.isBefore(now)){
+              return "Choose correct date";
+            }
           } ,
           onDateSelected: (DateTime value) {
             _date = value;
@@ -140,13 +124,10 @@ Widget _buildDate(){
 class AddRideFormState extends State<AddRideForm> {
   final TextEditingController _pickupController = TextEditingController();
   final TextEditingController _destinationController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
 
-    return
-      Form(key: _formkey,
+    return Form(key: _formkey,
         child:(
             Row(
               children: <Widget>[
@@ -236,7 +217,6 @@ class AddRideFormState extends State<AddRideForm> {
                             }
                           },
                           onSaved: (value) => _destination = value!,
-
                         ),
                       ),
                     ),
@@ -257,3 +237,25 @@ class AddRideFormState extends State<AddRideForm> {
       );
   }
 }
+
+// Widget _buildLuggage() {
+//   return Container(
+//     width: 300,
+//     child: (TextFormField(
+//       validator: (value){
+//         if(value!.isEmpty){
+//           return "Fill Luggage";
+//         }
+//       },
+//       onSaved: (value){
+//         _luggage = value! as int;
+//       },
+//       decoration: InputDecoration(
+//           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+//           hintText: "Luggage",
+//           contentPadding:
+//           new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
+//       keyboardType: TextInputType.number,
+//     )),
+//   );
+// }

@@ -1,4 +1,4 @@
-import 'package:fe_tare2k/views/core_views/Home_Widget.dart';
+import 'package:fe_tare2k/views/core_views/nav_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:fe_tare2k/FirebaseAuthentication/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -91,6 +91,7 @@ class LoginForm extends State<MyLoginForm> {
                           _formkey.currentState!.save();
                           dynamic result =
                               await _auth.loginIn(_email, _password);
+                          print(result);
                           if (result == authenticationStatus.completed) {
                             Navigator.push(
                               context,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fe_tare2k/views/core_views/Home_Widget.dart';
+import 'package:fe_tare2k/views/core_views/nav_bar_widget.dart';
 import 'package:fe_tare2k/FirebaseAuthentication/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 

@@ -21,5 +21,17 @@ class CityCaller {
     }
   }
 
+  static Future<List> getCities() async {
+    final response =
+    await http.get(Uri.parse('http://10.0.2.2:8080/city/cities/'));
+    if (response.statusCode == 200) {
+      List cities = json.decode(response.body);
+      return cities;
+    }
+    else {
+      throw Exception('Failed to load cities');
+    }
+  }
+
   CityCaller();
 }
