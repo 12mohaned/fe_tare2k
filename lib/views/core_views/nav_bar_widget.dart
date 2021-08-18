@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'Home_Widget.dart';
 import 'Profile_Widget.dart';
 import 'find-ride_Widget.dart';
-import 'AddRide_Widget.dart';
+import 'PublishRide_Widget.dart';
 
 class HomeApp extends StatelessWidget {
   const HomeApp({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class HomeWidget extends StatefulWidget {
 class _MyHomeWidgetState extends State<HomeWidget> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
-    MyRidePage(title: "Home"),
+    MyRidePage(title: "Fe Tare2k"),
     ProfilePage(title: "Profile"),
     FindRide(title: "find a ride"),
     AddRide(title: "Publish a ride")

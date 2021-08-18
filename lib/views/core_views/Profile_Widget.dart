@@ -1,8 +1,11 @@
 import 'package:fe_tare2k/Model/User.dart';
+import 'package:fe_tare2k/net/API_callers/trips_API_caller.dart';
 import 'package:fe_tare2k/net/API_callers/user_API_caller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
+
+import 'PastRides.dart';
 
 late Future<user> profileInformation;
 
@@ -56,7 +59,7 @@ class _MyProfilePageState extends State<ProfilePage> {
                         left: 120,
                         child: _phone(snapshot.data!.phoneNumber.toString())),
                     Positioned(top: 380, left: 40, child: _editProfile()),
-                    Positioned(top: 380, left: 140, child: _pastRides()),
+                    Positioned(top: 380, left: 140, child: _pastRides(context)),
                     Positioned(top: 380, left: 250, child: _dashBoard()),
                   ],
                 );
@@ -105,12 +108,21 @@ Widget _editProfile() {
   );
 }
 
-Widget _pastRides() {
+Widget _pastRides(context) {
   return Column(
     children: [
       IconButton(
         icon: const Icon(Icons.drive_eta_rounded),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PastRidesPage(
+                title: 'past rides',
+              ),
+            ),
+          );
+        },
       ),
       Text("Past rides")
     ],

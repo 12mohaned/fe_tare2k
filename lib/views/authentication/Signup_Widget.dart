@@ -11,10 +11,6 @@ late String _password;
 late String _email;
 late int _phoneNumber;
 
-
-
-
-
 class MySignupForm extends StatefulWidget {
   @override
   SignupForm createState() {
@@ -126,8 +122,6 @@ Widget _buildPassword() {
     )),
   );
 }
-
-
 
 class SignupWithEmail extends StatelessWidget {
   @override

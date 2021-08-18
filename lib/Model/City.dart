@@ -15,9 +15,7 @@ class City {
   factory City.fromJson(Map<String, dynamic> parsedJson) {
     return City(
         name: parsedJson['name'],
-        lat : parsedJson['lat'],
-        long : parsedJson['lon']
-    );
+        lat: parsedJson['lat'],
+        long: parsedJson['lon']);
   }
 }
-

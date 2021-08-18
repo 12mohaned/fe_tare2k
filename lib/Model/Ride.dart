@@ -3,11 +3,10 @@ import 'User.dart';
 class Ride {
   String pickup;
   String destination;
-  String date;
+  DateTime date;
   int passengers;
   int luggage;
   double price;
-  String time;
 
   Ride({
     required this.pickup,
@@ -16,7 +15,6 @@ class Ride {
     required this.passengers,
     required this.luggage,
     required this.price,
-    required this.time,
   });
 
   factory Ride.fromJson(Map<String, dynamic> json) {
@@ -26,8 +24,7 @@ class Ride {
         date: json['date'],
         passengers: json['passengers'],
         luggage: json['luggage'],
-        price: json['price'],
-        time: json['time']);
+        price: json['price']);
   }
 }
 

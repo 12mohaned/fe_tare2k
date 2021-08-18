@@ -1,31 +1,26 @@
-import 'package:fe_tare2k/Model/Ride.dart';
 import 'package:fe_tare2k/net/API_callers/trips_API_caller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class RequestRidePage extends StatefulWidget {
-  RequestRidePage({Key? key, required this.title}) : super(key: key);
-
+class PastRidesPage extends StatefulWidget {
+  PastRidesPage({Key? key, required this.title}) : super(key: key);
   final String title;
-
   @override
-  _RequestRideState createState() => _RequestRideState();
+  _MyPastRidesPageState createState() => _MyPastRidesPageState();
 }
 
-class _RequestRideState extends State<RequestRidePage> {
+class _MyPastRidesPageState extends State<PastRidesPage> {
   @override
   void initState() {
     super.initState();
   }
 
-  Future<List> _getRide() async {
-    var _rides = await TripCaller.getTripInfo();
-    return _rides;
+  Future<List> _getPastRidesInfo() async {
+    var _pastTrips = await TripCaller.getPastTrips();
+    return _pastTrips;
   }
 
   @override
   Widget build(BuildContext context) {
-    var deviceDimension = MediaQuery.of(context);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -34,7 +29,7 @@ class _RequestRideState extends State<RequestRidePage> {
         ),
         body: Center(
           child: (FutureBuilder<List>(
-            future: _getRide(),
+            future: _getPastRidesInfo(),
             builder: (BuildContext context, snapshot) {
               if (snapshot.hasData) {
                 List? data = snapshot.data;
@@ -73,9 +68,7 @@ class _RequestRideState extends State<RequestRidePage> {
                             ),
                             ListTile(
                               leading: Icon(Icons.person),
-                              title: Text(data[index]['driver']['firstname'] +
-                                  " " +
-                                  data[index]['driver']['lastname']),
+                              title: Text(data[index]['date']),
                               trailing: TextButton(
                                 child: Text('Select'),
                                 onPressed: () {},

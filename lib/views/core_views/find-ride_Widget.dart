@@ -19,28 +19,25 @@ class FindRide extends StatefulWidget {
   _FindRideState createState() => _FindRideState();
 }
 
-Widget _buildDate(){
+Widget _buildDate() {
   final DateTime now = DateTime.now();
 
   return Center(
-    child:(
-        DateTimeFormField(
-          decoration: const InputDecoration(
-            hintStyle: TextStyle(color: Colors.black45),
-            errorStyle: TextStyle(color: Colors.redAccent),
-            border: OutlineInputBorder(),
-            suffixIcon: Icon(Icons.event_note),
-            labelText: 'Date and time',
-          ),
-          mode: DateTimeFieldPickerMode.dateAndTime,
-          autovalidateMode: AutovalidateMode.always,
-          validator: (value){
-
-          } ,
-          onDateSelected: (DateTime value) {
-            _date = value;
-          },
-        )),
+    child: (DateTimeFormField(
+      decoration: const InputDecoration(
+        hintStyle: TextStyle(color: Colors.black45),
+        errorStyle: TextStyle(color: Colors.redAccent),
+        border: OutlineInputBorder(),
+        suffixIcon: Icon(Icons.event_note),
+        labelText: 'Date and time',
+      ),
+      mode: DateTimeFieldPickerMode.dateAndTime,
+      autovalidateMode: AutovalidateMode.always,
+      validator: (value) {},
+      onDateSelected: (DateTime value) {
+        _date = value;
+      },
+    )),
   );
 }
 
@@ -98,123 +95,106 @@ class RideFormState extends State<RideForm> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Form(
+    return Form(
         key: _formKey,
-        child:(
-      Row(
-      children: <Widget>[
-        Column(
+        child: (Row(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(6, 70, 10, 10),
-              child: SizedBox(
-                width: 160,
-                height: 50,
-                child: TypeAheadFormField<City?>(
-                  textFieldConfiguration: TextFieldConfiguration(
-                      controller: this._pickupController,
-                      decoration: InputDecoration(
-                          labelText: 'Pickup'
-                      )
+            Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(6, 70, 10, 10),
+                  child: SizedBox(
+                    width: 160,
+                    height: 50,
+                    child: TypeAheadFormField<City?>(
+                      textFieldConfiguration: TextFieldConfiguration(
+                          controller: this._pickupController,
+                          decoration: InputDecoration(labelText: 'Pickup')),
+                      suggestionsCallback: CityCaller.getCitiesInfo,
+                      itemBuilder: (context, City? suggestion) {
+                        final city = suggestion;
+                        return ListTile(
+                          title: Text(city!.name),
+                        );
+                      },
+                      noItemsFoundBuilder: (context) =>
+                          Container(height: 20, child: Text("No cities found")),
+                      onSuggestionSelected: (suggestion) {
+                        this._pickupController.text = suggestion!.name;
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please select a pickup';
+                        }
+                      },
+                      onSaved: (value) => _pickup = value!,
+                    ),
                   ),
-                  suggestionsCallback: CityCaller.getCitiesInfo,
-                  itemBuilder: (context, City? suggestion){
-                    final city =suggestion;
-                    return ListTile(
-                      title: Text(city!.name),
-                    );
-                  },
-                  noItemsFoundBuilder: (context) =>
-                      Container(
-                          height: 20,
-                          child: Text(
-                              "No cities found"
-                          )),
-                  onSuggestionSelected: (suggestion) {
-                    this._pickupController.text = suggestion!.name;
-                  },
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please select a pickup';
-                    }
-                  },
-                  onSaved: (value) => _pickup = value!,
                 ),
-              ),
+                SizedBox(
+                  width: 10,
+                  height: 20,
+                ),
+                SizedBox(
+                  width: 160,
+                  height: 90,
+                  child: _buildDate(),
+                ),
+              ],
             ),
-            SizedBox(
-              width: 10,
-              height: 20,
-            ),
-            SizedBox(
-              width: 160,
-              height: 90,
-              child: _buildDate(),
+            Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(12, 70, 10, 10),
+                  child: SizedBox(
+                    width: 160,
+                    height: 50,
+                    child: TypeAheadFormField<City?>(
+                      textFieldConfiguration: TextFieldConfiguration(
+                          controller: this._destinationController,
+                          decoration:
+                              InputDecoration(labelText: 'Destination')),
+                      suggestionsCallback: CityCaller.getCitiesInfo,
+                      itemBuilder: (context, City? suggestion) {
+                        final city = suggestion;
+                        return ListTile(
+                          title: Text(city!.name),
+                        );
+                      },
+                      noItemsFoundBuilder: (context) =>
+                          Container(height: 20, child: Text("No cities found")),
+                      onSuggestionSelected: (suggestion) {
+                        this._destinationController.text = suggestion!.name;
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please select a destination';
+                        }
+                      },
+                      onSaved: (value) => _destination = value!,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                  height: 20,
+                ),
+                SizedBox(
+                  width: 160,
+                  height: 50,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0)),
+                        hintText: 'Passengers',
+                        contentPadding: new EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 5)),
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-        Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(12, 70, 10, 10),
-              child: SizedBox(
-                width: 160,
-                height: 50,
-                child: TypeAheadFormField<City?>(
-                  textFieldConfiguration: TextFieldConfiguration(
-                      controller: this._destinationController,
-                      decoration: InputDecoration(
-                          labelText: 'Destination'
-                      )
-                  ),
-                  suggestionsCallback: CityCaller.getCitiesInfo,
-                  itemBuilder: (context, City? suggestion){
-                    final city =suggestion;
-                    return ListTile(
-                      title: Text(city!.name),
-                    );
-                  },
-                  noItemsFoundBuilder: (context) =>
-                      Container(
-                          height: 20,
-                          child: Text(
-                              "No cities found"
-                          )),
-                  onSuggestionSelected: (suggestion) {
-                    this._destinationController.text = suggestion!.name;
-                  },
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please select a destination';
-                    }
-                  },
-                  onSaved: (value) => _destination = value!,
-
-                ),
-              ),
-            ),
-            SizedBox(
-              width: 10,
-              height: 20,
-            ),
-            SizedBox(
-              width: 160,
-              height: 50,
-              child: TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
-                    hintText: 'Passengers',
-                    contentPadding:
-                        new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
-                keyboardType: TextInputType.number,
-              ),
-            ),
-          ],
-        ),
-      ],
-    )
-      ));
+        )));
   }
 }
