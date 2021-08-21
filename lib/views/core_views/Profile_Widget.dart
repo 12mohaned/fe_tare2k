@@ -3,12 +3,12 @@ import 'package:fe_tare2k/net/API_callers/trips_API_caller.dart';
 import 'package:fe_tare2k/net/API_callers/user_API_caller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-
+import 'Edit_profile.dart';
 import 'PastRides.dart';
+import 'package:fe_tare2k/globals.dart' as globals;
+
 
 late Future<Profile> profileInformation;
-
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -38,7 +38,6 @@ class _MyProfilePageState extends State<ProfilePage> {
         body: Center(
           child: FutureBuilder<Profile>(
             builder: (BuildContext context, AsyncSnapshot<Profile> snapshot) {
-              print(snapshot.toString().length);
               if (snapshot.hasData) {
                 return Stack(
                   children: [
@@ -58,11 +57,12 @@ class _MyProfilePageState extends State<ProfilePage> {
                         top: 260,
                         left: 120,
                         child: _phone(snapshot.data!.phoneNumber.toString())),
-                    Positioned(top: 380, left: 40, child: _editProfile()),
+                    Positioned(top: 380, left: 40, child: _editProfile(context)),
                     Positioned(top: 380, left: 140, child: _pastRides(context)),
                     Positioned(top: 380, left: 250, child: _dashBoard()),
                   ],
                 );
+
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -77,31 +77,43 @@ class _MyProfilePageState extends State<ProfilePage> {
 }
 
 Widget _firstName(firstName) {
+  globals.firstname = firstName;
   return Text(firstName,
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
 Widget _lastName(lastName) {
+  globals.lastname = lastName;
   return Text(lastName,
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
 Widget _email(email) {
+  globals.email = email;
   return Text(email,
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
 Widget _phone(phone) {
+  globals.phoneNumber = phone.toString();
   return Text(phone,
       style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0));
 }
 
-Widget _editProfile() {
+Widget _editProfile(context) {
   return Column(
     children: [
       IconButton(
         icon: const Icon(Icons.edit),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditProfilePage(title: "Edit profile"
+              ),
+            ),
+          );
+        },
       ),
       Text("Edit profile")
     ],

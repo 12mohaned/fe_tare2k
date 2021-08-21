@@ -5,12 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
 final FirebaseAuth auth = FirebaseAuth.instance;
+String id = auth.currentUser!.email.toString();
 
 class UserCaller {
   static Future<Profile> getProfile() async {
-    String profile = auth.currentUser!.email.toString();
     final response =
-        await http.get(Uri.parse('http://10.0.2.2:8080/user/' + profile));
+        await http.get(Uri.parse('http://10.0.2.2:8080/user/' + id));
     if (response.statusCode == 200) {
       return Profile.fromJson(jsonDecode(response.body));
     } else {
@@ -40,5 +40,26 @@ class UserCaller {
     }
   }
 
+  static Future<Profile> updateProfile(String firstname, String lastname
+      , String email, int phone) async {
+    final response = await http.put(
+      Uri.parse('http://10.0.2.2:8080/user/User/' + id),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, Object>{
+        'firstname': firstname,
+        'lastname': lastname,
+        'email': email,
+        'phone': phone,
+      }),
+    );
+    print(response);
+    if (response.statusCode == 200) {
+      return Profile.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to update album.');
+    }
+  }
   UserCaller();
 }
