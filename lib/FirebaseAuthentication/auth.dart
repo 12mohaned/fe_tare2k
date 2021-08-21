@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fe_tare2k/Model/User.dart';
+import 'package:fe_tare2k/Model/Profile.dart';
 import 'package:crypt/crypt.dart';
 
 class AuthService {
@@ -11,7 +11,7 @@ class AuthService {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       var hashedPassword = Crypt.sha256(password);
-      user(
+      Profile(
           firstName: firstName,
           lastName: lastName,
           email: email,

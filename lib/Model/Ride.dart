@@ -1,4 +1,4 @@
-import 'User.dart';
+import 'Profile.dart';
 
 class Ride {
   String pickup;

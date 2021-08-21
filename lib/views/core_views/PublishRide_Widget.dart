@@ -7,7 +7,7 @@ import 'package:date_field/date_field.dart';
 
 late String _pickup;
 late String _destination;
-late int _passengers;
+int? _passengers;
 late double _price;
 late DateTime _date;
 
@@ -46,7 +46,8 @@ class _AddRideState extends State<AddRide> {
               style: style,
               onPressed: () {
                 if (_formkey.currentState!.validate()) {
-                  TripCaller.publishRide(_pickup, _destination, _date, _passengers,
+                  _formkey.currentState!.save();
+                  TripCaller.publishRide(_pickup, _destination, _date, 1,
                   _price);
                 }
               },
@@ -67,28 +68,27 @@ class AddRideForm extends StatefulWidget {
   }
 }
 
-Widget _buildPassenger() {
-  return Container(
-    width: 300,
-    child: (TextFormField(
-      validator: (value) {
-        if (value!.isEmpty) {
-          return "Fill Passengers";
-        }
-      },
-      onSaved: (value) {
-        print(_passengers);
-        _passengers = value! as int;
-      },
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          hintText: "Passenger",
-          contentPadding:
-              new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
-      keyboardType: TextInputType.number,
-    )),
-  );
-}
+// Widget _buildPassenger() {
+//   return Container(
+//     width: 300,
+//     child: (TextFormField(
+//       validator: (value) {
+//         if (value!.isEmpty) {
+//           return "Fill Passengers";
+//         }
+//       },
+//       onSaved: (value) {
+//         _passengers = value! as int;
+//       },
+//       decoration: InputDecoration(
+//           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+//           hintText: "Passenger",
+//           contentPadding:
+//               new EdgeInsets.symmetric(horizontal: 30, vertical: 5)),
+//       keyboardType: TextInputType.number,
+//     )),
+//   );
+// }
 
 Widget _buildPrice() {
   return Container(
@@ -100,7 +100,7 @@ Widget _buildPrice() {
         }
       },
       onSaved: (value) {
-        _price = value! as double;
+        _price = double.parse(value!);
       },
       decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -244,9 +244,11 @@ class AddRideFormState extends State<AddRideForm> {
                   width: 110,
                   height: 50,
                   child: _buildPrice(),
-                )
+                ),
               ],
             ),
+            // _buildPassenger(),
+
           ],
         ),
       )),

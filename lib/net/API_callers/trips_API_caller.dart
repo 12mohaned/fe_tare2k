@@ -1,7 +1,7 @@
 import 'dart:convert';
 // import 'package:fe_tare2k/net/endpoints.dart';
 import 'package:fe_tare2k/Model/Ride.dart';
-import 'package:fe_tare2k/Model/User.dart';
+import 'package:fe_tare2k/Model/Profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
@@ -45,6 +45,7 @@ class TripCaller {
         'date': date.toIso8601String(),
         'passengers': passengers,
         'price' :price,
+        'email' : auth.currentUser!.email.toString(),
       }),
     );
 

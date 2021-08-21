@@ -1,3 +1,4 @@
+import 'package:fe_tare2k/net/API_callers/user_API_caller.dart';
 import 'package:flutter/material.dart';
 import 'package:fe_tare2k/views/core_views/nav_bar_widget.dart';
 import 'package:fe_tare2k/FirebaseAuthentication/auth.dart';
@@ -150,9 +151,9 @@ class SignupWithEmail extends StatelessWidget {
               onPressed: () async {
                 if (_formkey.currentState!.validate()) {
                   _formkey.currentState!.save();
+                  UserCaller.addUser(_firstName, _lastName, _email, _phoneNumber);
                   dynamic result = await _auth.signup(
                       _firstName, _lastName, _email, _phoneNumber, _password);
-                  print(result);
                   if (result == authenticationStatus.completed) {
                     Navigator.push(
                       context,

@@ -67,8 +67,8 @@ class _RequestRideState extends State<RequestRidePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Text("Departure time: " +
-                                    data[index]['time'].toString()),
+                                Text("Departure datev: " +
+                                    data[index]['date'].toString()),
                               ],
                             ),
                             ListTile(

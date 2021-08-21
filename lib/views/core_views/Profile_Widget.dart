@@ -1,4 +1,4 @@
-import 'package:fe_tare2k/Model/User.dart';
+import 'package:fe_tare2k/Model/Profile.dart';
 import 'package:fe_tare2k/net/API_callers/trips_API_caller.dart';
 import 'package:fe_tare2k/net/API_callers/user_API_caller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,7 +7,7 @@ import 'dart:io';
 
 import 'PastRides.dart';
 
-late Future<user> profileInformation;
+late Future<Profile> profileInformation;
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key, required this.title}) : super(key: key);
@@ -22,7 +22,7 @@ class _MyProfilePageState extends State<ProfilePage> {
     super.initState();
   }
 
-  Future<user> _getUserInfo() async {
+  Future<Profile> _getUserInfo() async {
     var _userData = await UserCaller.getProfile();
     return _userData;
   }
@@ -36,8 +36,8 @@ class _MyProfilePageState extends State<ProfilePage> {
           backgroundColor: Color.fromRGBO(33, 114, 243, 1),
         ),
         body: Center(
-          child: FutureBuilder<user>(
-            builder: (BuildContext context, AsyncSnapshot<user> snapshot) {
+          child: FutureBuilder<Profile>(
+            builder: (BuildContext context, AsyncSnapshot<Profile> snapshot) {
               print(snapshot.toString().length);
               if (snapshot.hasData) {
                 return Stack(
