@@ -30,7 +30,6 @@ class UserCaller {
         'lastname': lastname,
         'email': email,
         'phone': phone,
-
       }),
     );
     if (response.statusCode == 201) {
@@ -40,8 +39,8 @@ class UserCaller {
     }
   }
 
-  static Future<Profile> updateProfile(String firstname, String lastname
-      , String email, int phone) async {
+  static Future<Profile> updateProfile(
+      String firstname, String lastname, String email, int phone) async {
     final response = await http.put(
       Uri.parse('http://10.0.2.2:8080/user/User/' + id),
       headers: <String, String>{
@@ -61,5 +60,6 @@ class UserCaller {
       throw Exception('Failed to update album.');
     }
   }
+
   UserCaller();
 }
